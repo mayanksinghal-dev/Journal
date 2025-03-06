@@ -1,0 +1,12 @@
+net\engineeringdigest\journalApp\aspects\LoggingInterceptor.class
+net\engineeringdigest\journalApp\journalEntry\JournalEntryController.class
+net\engineeringdigest\journalApp\health\HealthController.class
+net\engineeringdigest\journalApp\user\entity\User.class
+net\engineeringdigest\journalApp\journalEntry\JournalEntryRepository.class
+net\engineeringdigest\journalApp\journalEntry\JournalEntryService.class
+net\engineeringdigest\journalApp\user\UserController.class
+net\engineeringdigest\journalApp\annotations\LogExecution.class
+net\engineeringdigest\journalApp\user\UserRepository.class
+net\engineeringdigest\journalApp\JournalApplication.class
+net\engineeringdigest\journalApp\journalEntry\entity\JournalEntry.class
+net\engineeringdigest\journalApp\user\UserService.class
