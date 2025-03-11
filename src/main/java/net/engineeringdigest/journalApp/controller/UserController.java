@@ -1,7 +1,8 @@
-package net.engineeringdigest.journalApp.user;
+package net.engineeringdigest.journalApp.controller;
 
 import java.util.*;
-import org.bson.types.ObjectId;
+
+import net.engineeringdigest.journalApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
-import net.engineeringdigest.journalApp.user.entity.User;
+import net.engineeringdigest.journalApp.entity.User;
 
 
 @RestController

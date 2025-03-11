@@ -1,4 +1,4 @@
-package net.engineeringdigest.journalApp.user.entity;
+package net.engineeringdigest.journalApp.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.*;
-import net.engineeringdigest.journalApp.journalEntry.entity.JournalEntry;
 
 @Document("users")
 @Data

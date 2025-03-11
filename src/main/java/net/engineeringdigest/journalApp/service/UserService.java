@@ -1,16 +1,16 @@
-package net.engineeringdigest.journalApp.user;
+package net.engineeringdigest.journalApp.service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
+import net.engineeringdigest.journalApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import net.engineeringdigest.journalApp.user.entity.User;
+import net.engineeringdigest.journalApp.entity.User;
 
 @Service
 public class UserService{
@@ -20,8 +20,8 @@ public class UserService{
 
     private static final PasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
 
-    public User createUser(User user){
-        return userRepository.save(user);
+    public void createUser(User user){
+        userRepository.save(user);
     }
 
     public User createNewUser(User user){

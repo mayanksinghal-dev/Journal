@@ -1,7 +1,7 @@
-package net.engineeringdigest.journalApp.unAuth;
+package net.engineeringdigest.journalApp.controller;
 import lombok.extern.slf4j.Slf4j;
-import net.engineeringdigest.journalApp.user.UserService;
-import net.engineeringdigest.journalApp.user.entity.User;
+import net.engineeringdigest.journalApp.service.UserService;
+import net.engineeringdigest.journalApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
