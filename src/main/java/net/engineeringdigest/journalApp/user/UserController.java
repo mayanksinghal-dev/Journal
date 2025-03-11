@@ -5,6 +5,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,17 +27,6 @@ public class UserController {
                 : new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        log.info("testing create user");
-        try {
-            User createdUser = userService.createUser(user);
-            return new ResponseEntity<User>(createdUser, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @GetMapping("/findUser")
     public ResponseEntity<User> findById(@RequestParam String userName ) {
         Optional<User> user = userService.findByUserName(userName);
@@ -45,19 +36,23 @@ public class UserController {
         return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<?> remove(@PathVariable ObjectId id) {
-        userService.remove(id);
+    @DeleteMapping
+    public ResponseEntity<?> remove() {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        userService.remove(userName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("{userName}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String userName) {
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
         Optional<User> userInDb = userService.findByUserName(userName);
         if(userInDb.isPresent()){
             userInDb.get().setUserName(user.getUserName());
             userInDb.get().setPassword(user.getPassword());
-            return new ResponseEntity<User>(userService.createUser(userInDb.get()), HttpStatus.OK);
+            return new ResponseEntity<User>(userService.createNewUser(userInDb.get()), HttpStatus.OK);
         }
         return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     }
